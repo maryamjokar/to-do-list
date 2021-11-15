@@ -1,5 +1,6 @@
 import tkinter
 import tkinter.messagebox
+import pickle
 
 root = tkinter.Tk()
 root.title("to do list")
@@ -28,6 +29,11 @@ def load_tasks():
     except:
             tkinter.messagebox.showwarning(title="warning" , message="Cannot finf tasks.dat")
 
+def save_task():
+    tasks = Listbox_tasks.get(0, Listbox_tasks.size())
+    pickle.dump(tasks, open("tasks.dat" , "wb")) 
+
+
 #create GUI
 frame_tasks = tkinter.Frame(root)
 frame_tasks.pack()
@@ -53,5 +59,7 @@ button_delete_task.pack()
 button_load_tasks= tkinter.Button(root, text="Load tasks",width=48, command = load_tasks)
 button_load_tasks.pack()
 
+button_save_task= tkinter.Button(root, text="Save task",width=48, command = save_task)
+button_save_task.pack() 
 
 root.mainloop()
