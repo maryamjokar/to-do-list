@@ -19,6 +19,14 @@ def delete_task():
     except:
         tkinter.messagebox.showwarning(title="warning" , message="You must select a task.")
 
+def load_tasks():
+    try:
+        tasks = pickle.load(open("task.dat" , "rb"))
+        Listbox_tasks.delete(0, tkinter.END)
+        for task in tasks:
+            Listbox_tasks.insert(tkinter.END, task)
+    except:
+            tkinter.messagebox.showwarning(title="warning" , message="Cannot finf tasks.dat")
 
 #create GUI
 frame_tasks = tkinter.Frame(root)
@@ -41,6 +49,9 @@ button_add_task.pack()
 
 button_delete_task= tkinter.Button(root, text="Delete task",width=48, command = delete_task)
 button_delete_task.pack()
+
+button_load_tasks= tkinter.Button(root, text="Load tasks",width=48, command = load_tasks)
+button_load_tasks.pack()
 
 
 root.mainloop()
