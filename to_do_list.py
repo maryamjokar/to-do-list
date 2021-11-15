@@ -4,6 +4,15 @@ import tkinter.messagebox
 root = tkinter.Tk()
 root.title("to do list")
 
+def add_task():
+    task = entry_task.get()
+    if task!=:
+        Listbox_tasks.insert(tkinter.END ,task)
+        entry_task.delete(0, tkinter.END)
+    else:
+        tkinter.messagebox.showwarning(title="warning", message="You must enter a task.")
+
+
 #create GUI
 frame_tasks = tkinter.Frame(root)
 frame_tasks.pack()
@@ -19,6 +28,10 @@ Scrollbar_task.config(command=Listbox_tasks.yview)
 
 entry_task= tkinter.Entry(root,width=50)
 entry_task.pack()
+
+button_add_task= tkinter.Button(root, text="Add task",width=48, command = add_task)
+button_add_task.pack()
+
 
 
 root.mainloop()
